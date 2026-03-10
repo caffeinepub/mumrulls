@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Playfair Display ── */
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-VF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-VF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── General Sans ── */
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+
+    /* ── Maroon / Crimson (Primary) ── */
+    /* Deep maroon ≈ #800020 */
+    --primary: 0.34 0.17 12;
+    --primary-foreground: 0.97 0.018 78;
+
+    /* ── Warm parchment background — distinctly richer than before ── */
+    --background: 0.96 0.022 78;
+    --foreground: 0.16 0.025 45;
+
+    /* ── Card — lifted ivory ── */
+    --card: 0.995 0.006 75;
+    --card-foreground: 0.16 0.025 45;
+
+    /* ── Popover ── */
+    --popover: 0.995 0.006 75;
+    --popover-foreground: 0.16 0.025 45;
+
+    /* ── Secondary (warm sand) ── */
+    --secondary: 0.90 0.030 68;
+    --secondary-foreground: 0.22 0.055 28;
+
+    /* ── Muted — deeper parchment so sections alternate clearly ── */
+    --muted: 0.91 0.030 72;
+    --muted-foreground: 0.48 0.030 55;
+
+    /* ── Accent (maroon wash) ── */
+    --accent: 0.88 0.045 18;
+    --accent-foreground: 0.34 0.17 12;
+
+    /* ── Destructive ── */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* ── Border / Input / Ring ── */
+    --border: 0.84 0.028 68;
+    --input: 0.87 0.022 70;
+    --ring: 0.34 0.17 12;
+
+    /* ── Charts ── */
+    --chart-1: 0.34 0.17 12;
+    --chart-2: 0.55 0.12 50;
+    --chart-3: 0.70 0.08 80;
+    --chart-4: 0.45 0.10 20;
+    --chart-5: 0.80 0.05 85;
+
+    /* ── Sidebar ── */
+    --sidebar: 0.995 0.006 75;
+    --sidebar-foreground: 0.16 0.025 45;
+    --sidebar-primary: 0.34 0.17 12;
+    --sidebar-primary-foreground: 0.97 0.018 78;
+    --sidebar-accent: 0.88 0.045 18;
+    --sidebar-accent-foreground: 0.34 0.17 12;
+    --sidebar-border: 0.84 0.028 68;
+    --sidebar-ring: 0.34 0.17 12;
+
+    /* ── Brand custom tokens ── */
+    --maroon: 0.34 0.17 12;
+    --maroon-dark: 0.27 0.15 12;
+    --maroon-rich: 0.30 0.16 12;
+    --maroon-light: 0.44 0.13 14;
+    --beige: 0.96 0.022 78;
+    --beige-dark: 0.91 0.030 72;
+    --parchment: 0.93 0.026 74;
+    --cream: 0.995 0.006 75;
+    /* Warm antique gold — more amber, less yellow */
+    --gold: 0.72 0.12 62;
+    --gold-light: 0.85 0.08 72;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "General Sans", "Inter", sans-serif;
+    /* Subtle warm grain texture using CSS */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: "Playfair Display", "Georgia", serif;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--beige));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--maroon) / 0.35);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--maroon) / 0.65);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", "Georgia", serif;
+  }
+  .font-body {
+    font-family: "General Sans", "Inter", sans-serif;
+  }
+
+  /* Editorial heading utility — tight tracking, generous line-height */
+  .heading-editorial {
+    font-family: "Playfair Display", "Georgia", serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+  }
+
+  /* Section eyebrow label */
+  .eyebrow {
+    font-family: "General Sans", sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: oklch(var(--maroon));
+  }
+
+  /* Rich maroon section background */
+  .bg-maroon-section {
+    background-color: oklch(var(--maroon-rich));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .text-maroon {
+    color: oklch(var(--maroon));
+  }
+  .bg-maroon {
+    background-color: oklch(var(--maroon));
+  }
+  .bg-maroon-dark {
+    background-color: oklch(var(--maroon-dark));
+  }
+  .border-maroon {
+    border-color: oklch(var(--maroon));
+  }
+}
